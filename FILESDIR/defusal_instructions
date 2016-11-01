@@ -1,0 +1,24 @@
+So you fucked up and accidentally armed a bomb? Great job.
+
+
+
+   *----------*
+   | computer |
+   |          |
+   |          |    cable
+   *----------*             -----------
+  //%%%%%%%%%//~~~~~~~~~~~~/   bomb   /
+ *-----------*             ***********
+
+
+>Bomb defusal requires disarming SOFTWARE and HARDWARE locks.
+    1: HARDWARE
+        -Carefully remove components from the bomb.
+        -
+
+    2: SOFTWARE
+        -Login as root:
+            >logout
+            >USERNAME: root, PASSOWRD: toor
+        -Run the unlock utility to unlock both crypto keys.
+        -After unlocking both crypto keys, run the disarm utility to disarm the bomb.
