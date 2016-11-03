@@ -105,3 +105,7 @@ class disarm(Command):
 
     def win(self):
         print()
+
+if __name__ == '__main__':
+    a = disarm()
+    a.runcmd()
