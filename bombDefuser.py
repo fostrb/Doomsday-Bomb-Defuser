@@ -13,7 +13,6 @@ class bombDefuser(object):
             os.system('cls' if os.name =='nt' else 'clear')
             print(core.banner)
             print(core.initial)
-            self.cmds = self.load_cmds()
             signal.signal(signal.SIGINT, self.sigint_handler)
             signal.signal(signal.SIGTSTP, self.sigtstp_handler)
 
@@ -47,7 +46,7 @@ class bombDefuser(object):
             sep = cmd.split()
             command = sep.pop(0)
             cmd_args = sep
-            for loaded in self.cmds:
+            for loaded in core.programs:
                 if command == loaded.name:
                     if core.curUser == "guest":
                         if loaded.privileges != "guest":
@@ -62,8 +61,16 @@ class bombDefuser(object):
                 os.system('cls' if os.name =='nt' else 'clear')
                 self.login_screen()
             elif command in ["cmds","programs", "help"]:
-                for each in self.cmds:
-                    print("\t",each.name, ":", each.brief)
+                progDict = {}
+                for each in core.programs:
+                    if each.programType not in progDict.keys():
+                        progDict[each.programType]=[]
+                    progDict[each.programType].append(each)
+                for progType in progDict.keys():
+                    print("---",progType, "--------------------")
+                    for program in progDict[progType]:
+                        print("\t",program.name,":",program.brief)
+                print("---System Specific------------------")
                 print("\t","logout : return to login screen")
                 print("\t","help : displays list of programs and their usages")
                 return

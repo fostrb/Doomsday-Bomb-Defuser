@@ -6,72 +6,59 @@ import os
 from time import sleep
 
 class vampyre(Program):
-    def __init__(self, name="vampyre", brief="Cyber lockpick utility", privileges="guest"):
-        super(vampyre, self).__init__(name=name, brief=brief, privileges=privileges)
+    def __init__(self, name="vampyre", brief="Cyber lockpick utility", privileges="guest", programType="Hacking Utilities"):
+        super(vampyre, self).__init__(name=name, brief=brief, privileges=privileges, programType=programType)
         self.alias = ["vamp"]
 
     def runcmd(self, args):
         self.print_vamPYre()
-        print("ARGS:",args)
         if not args:
-            print("Enter a target to unlock.")
+            print("\nEnter a target to unlock.")
+            print("USAGE: vampyre <locked file>")
             return
         if (args[0].lower() == '--sweep')or args[0].lower() == '-s':
             print("sweeping...")
             filelist = [f for f in os.listdir(core.filesdir) if isfile(join(core.filesdir, f))]
             for file in filelist:
-                print('\t',file,end='', flush=True)
+                print('\t',file.ljust(40),end='', flush=True)
                 self.loadingBar()
-                if self.checkVulnerable(file):
-                    print("\t\t\tVULNERABLE")
+                lock = core.is_locked(file)
+                if lock:
+                    if lock[1] == "vampyre":
+                        print("---VULNERABLE---")
+                    else:
+                        print("LOCKED")
                 else:
-                    print("")
+                    print("UNLOCKED")
             return
-        elif args[0] not in core.fileslist:
+        elif args[0] not in core.get_files():
             print("NOPE")
             return
         else:
-            num = self.checkVulnerable(args[0])
+            num = core.is_locked(args[0])[2]
             if num:
-                print("NUMBER:", num)
                 self.disarming_utility(int(num))
 
 
 
-    def print_vamPYre(self):
-        vamPYre ="""
-                       _______     __
-                      |  __ \ \   / /
- __   ____ _ _ __ ___ | |__) \ \_/ / __ ___
- \ \ / / _` | '_ ` _ \|  ___/ \   / '__/ _ \\
-  \ V / (_| | | | | | | |      | || | |  __/
-   \_/ \__,_|_| |_| |_|_|      |_||_|  \___|
-                ------Cyber Lockpick Utility
-
-"""
-
-        vampyreAlternate="""
+    def print_vamPYre(self, clear=False):
+        vampyre="""
                ____________________
-        __    /
-          \  / AMPIRE
-           \/
-
+     ___      /     _________
+        \    / AMP\/RE
+         \  /     / cyber lockpicking utility
+          \/    \/
         """
-        #os.system("clear")
-        #print(vamPYre)
-        print(vampyreAlternate)
+        if clear:
+            os.system("clear")
+        for each in vampyre:
+            print(each,end='',flush=True)
+            sleep(.008)
 
     def loadingBar(self):
         for i in range(1,10):
             print(".", end='', flush=True)
             sleep(.1)
-
-    def checkVulnerable(self, file):
-        f = open(core.filesdir+'/'+file)
-        line = f.readline()
-        if("VAMPLOCK" in line):
-            return line.split(':')[1]
-
 
     def disarming_utility(self, size):
         self.size = size
@@ -122,12 +109,12 @@ class vampyre(Program):
                 print(each,end=":")
                 if each in self.solution:
                     if guess.index(each) == self.solution.index(each):
-                        print("          LOCKED")
+                        print("LOCKED".rjust(20))
                         self.guessed[guess.index(each)] = each
                     else:
-                        print("          Exists")
+                        print("Exists".rjust(20))
                 else:
-                    print("----------------")
+                    print("--------------------")
                     if each.upper() in self.possibles:
                         self.possibles.remove(each.upper())
             print('--------------------------------------------------------------------')

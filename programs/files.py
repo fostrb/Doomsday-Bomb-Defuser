@@ -9,5 +9,8 @@ class files(Program):
         self.filelist = []
 
     def runcmd(self, args):
-        for each in core.fileslist:
-            print("\t",each)
+        for each in core.get_files():
+            print("\t",each.ljust(40), end='')
+            if core.is_locked(each):
+                print("LOCKED")
+            else: print("")

@@ -13,8 +13,9 @@ class printfile(Program):
         if not args or args[0] == "help":
             print(self.brief)
         else:
-            self.filelist = [f for f in listdir(core.filesdir) if isfile(join(core.filesdir, f))]
+            self.filelist = core.get_files()
             if args[0] in self.filelist:
+
                 print("\n\tPrinting", args[0], "...\n")
             else:
                 print("File not found")

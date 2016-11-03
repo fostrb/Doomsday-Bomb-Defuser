@@ -1,10 +1,13 @@
 import os
+from os import listdir
+from os.path import isfile, join
 class Program(object):
-    def __init__(self, name, usage=None, brief=None, privileges="guest"):
+    def __init__(self, name, usage=None, brief=None, privileges="guest", programType="Basic Utilities"):
         self.name = name
         self.privileges = privileges
         self.usage = usage or ''
         self.brief = brief or ''
+        self.programType = programType
 
 banner = """
  ____                                          ______
@@ -13,6 +16,25 @@ banner = """
 |                  ..'               |      |          |
 |___________ ....''                  |       `.______.'
 """
+filesdir = "/home/ben/PycharmProjects/bombDefuser/FILESDIR"
+
+def load_programs():
+    from programs import files, openfile, clear, whoami, printfile, unlock, armBomb, bombStatus, disarm, vampyre
+    return [files.files(), openfile.openfile(), clear.clear(), whoami.whoami(), printfile.printfile(), unlock.unlock(), armBomb.armBomb(), bombStatus.bombStatus(), disarm.disarm(), vampyre.vampyre()]
+
+def get_files():
+    fileslist = [f for f in listdir(filesdir) if isfile(join(filesdir, f))]
+    return fileslist
+
+def is_locked(file):
+    f = open(filesdir+'/'+file)
+    line = f.readline()
+    if("!!" in line):
+        return line.split(':')
+    else:
+        return False
+
+programs=load_programs()
 
 initial = """Enter "help" for command list
 """
@@ -25,10 +47,7 @@ admins = {"root":"toor"}
 promptSuffix = "@estoBombRig>"
 prompt = curUser+promptSuffix
 
-filesdir = "/home/ben/PycharmProjects/bombDefuser/FILESDIR"
-fileslist = []
-for each in os.listdir(filesdir):
-    fileslist.append(each)
+
 
 crypto1Locked = False
 crypto2Locked = False

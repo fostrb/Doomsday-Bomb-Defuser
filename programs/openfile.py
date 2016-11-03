@@ -13,11 +13,11 @@ class openfile(Program):
         if not args or args[0] == "help":
             print(self.brief)
         else:
-            self.filelist = [f for f in listdir(core.filesdir) if isfile(join(core.filesdir, f))]
+            self.filelist = core.get_files()
             if args[0] in self.filelist:
                 f = open(core.filesdir+'/'+args[0])
                 line = f.readline()
-                if 'LOCK' in f.readline():
+                if 'LOCK' in line:
                     print("LOCKED")
                     return
                 os.system("cat "+core.filesdir+'/'+args[0])
