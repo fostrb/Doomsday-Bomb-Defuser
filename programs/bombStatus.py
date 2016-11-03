@@ -1,7 +1,7 @@
-from core import Command
+from core import Program
 import core
 
-class bombStatus(Command):
+class bombStatus(Program):
     def __init__(self, name="bombStatus", brief="Check bomb status"):
         super(bombStatus, self).__init__(name=name, brief=brief)
         self.alias = ["status"]

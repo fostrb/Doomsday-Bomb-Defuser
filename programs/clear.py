@@ -1,8 +1,8 @@
-from core import Command
+from core import Program
 import core
 import os
 
-class clear(Command):
+class clear(Program):
     def __init__(self, name="clear", brief="clear screen"):
         super(clear, self).__init__(name=name, brief=brief)
         self.alias = ["cls"]

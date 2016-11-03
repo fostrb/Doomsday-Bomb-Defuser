@@ -61,16 +61,16 @@ class bombDefuser(object):
             if command == "logout":
                 os.system('cls' if os.name =='nt' else 'clear')
                 self.login_screen()
-            elif command in ["cmds", "help"]:
+            elif command in ["cmds","programs", "help"]:
                 for each in self.cmds:
                     print("\t",each.name, ":", each.brief)
                 print("\t","logout : return to login screen")
-                print("\t","help : displays list of commands and their usages")
+                print("\t","help : displays list of programs and their usages")
                 return
             elif command == "stopthismadness":
                 exit()
             else:
-                print("Command not recognized. Enter \'help\' for a list of commands.")
+                print("Command not recognized. Enter \'help\' for a list of programs.")
 
 
         def login_screen(self):
@@ -100,8 +100,8 @@ class bombDefuser(object):
 
 
         def load_cmds(self):
-            from commands import files, openfile, clear, whoami, printfile, unlock, armBomb, bombStatus, disarm
-            return [files.files(), openfile.openfile(), clear.clear(), whoami.whoami(), printfile.printfile(), unlock.unlock(), armBomb.armBomb(), bombStatus.bombStatus(), disarm.disarm()]
+            from programs import files, openfile, clear, whoami, printfile, unlock, armBomb, bombStatus, disarm, vampyre
+            return [files.files(), openfile.openfile(), clear.clear(), whoami.whoami(), printfile.printfile(), unlock.unlock(), armBomb.armBomb(), bombStatus.bombStatus(), disarm.disarm(), vampyre.vampyre()]
 
 
 if __name__ == "__main__":

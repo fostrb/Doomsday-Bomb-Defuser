@@ -1,7 +1,7 @@
-from core import Command
+from core import Program
 import core
 
-class whoami(Command):
+class whoami(Program):
     def __init__(self, name="whoami", brief="Echos the current user and their privileges"):
         super(whoami, self).__init__(name=name, brief=brief)
         self.alias = ["user"]

@@ -1,10 +1,10 @@
-from core import Command
+from core import Program
 import core
 import random
 import os
 from time import sleep
 
-class disarm(Command):
+class disarm(Program):
     def __init__(self, name="disarm", brief="Bomb disarming utility", privileges="root"):
         super(disarm, self).__init__(name=name, brief=brief, privileges=privileges)
         self.alias = ["disarm"]

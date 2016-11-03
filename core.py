@@ -1,4 +1,5 @@
-class Command(object):
+import os
+class Program(object):
     def __init__(self, name, usage=None, brief=None, privileges="guest"):
         self.name = name
         self.privileges = privileges
@@ -23,6 +24,11 @@ armed = False
 admins = {"root":"toor"}
 promptSuffix = "@estoBombRig>"
 prompt = curUser+promptSuffix
+
+filesdir = "/home/ben/PycharmProjects/bombDefuser/FILESDIR"
+fileslist = []
+for each in os.listdir(filesdir):
+    fileslist.append(each)
 
 crypto1Locked = False
 crypto2Locked = False

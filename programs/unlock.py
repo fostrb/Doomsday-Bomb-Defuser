@@ -1,8 +1,8 @@
-from core import Command
+from core import Program
 import core
 from time import sleep
 
-class unlock(Command):
+class unlock(Program):
     def __init__(self, name="unlock", brief="Bomb unlock utility", privileges="root"):
         super(unlock, self).__init__(name=name, brief=brief, privileges=privileges)
         self.alias = ["unlock"]

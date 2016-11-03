@@ -1,9 +1,9 @@
-from core import Command
+from core import Program
 import core
 from os import listdir
 from os.path import isfile, join
 
-class printfile(Command):
+class printfile(Program):
     def __init__(self, name="print", brief="Physically print a file. USAGE: print filename", privileges="root"):
         super(printfile, self).__init__(name=name, brief=brief, privileges=privileges)
         self.alias = ["printfile"]
@@ -13,8 +13,7 @@ class printfile(Command):
         if not args or args[0] == "help":
             print(self.brief)
         else:
-            self.filesdir = self.filesdir = "/home/ben/PycharmProjects/bombDefuser/FILESDIR"
-            self.filelist = [f for f in listdir(self.filesdir) if isfile(join(self.filesdir, f))]
+            self.filelist = [f for f in listdir(core.filesdir) if isfile(join(core.filesdir, f))]
             if args[0] in self.filelist:
                 print("\n\tPrinting", args[0], "...\n")
             else:

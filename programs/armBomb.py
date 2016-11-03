@@ -1,9 +1,9 @@
-from core import Command
+from core import Program
 import core
 from time import sleep
 import os
 
-class armBomb(Command):
+class armBomb(Program):
     def __init__(self, name="armBomb", brief="Bomb arming utility"):
         super(armBomb, self).__init__(name=name, brief=brief)
         self.alias = ["arm"]
