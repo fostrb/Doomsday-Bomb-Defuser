@@ -32,13 +32,19 @@ class vampyre(Program):
                     print("UNLOCKED")
             return
         elif args[0] not in core.get_files():
-            print("NOPE")
+            print("File doesn't exist")
             return
         else:
-            num = core.is_locked(args[0])[2]
-            if num:
-                self.disarming_utility(int(num))
-
+            lock = core.is_locked(args[0])
+            if lock:
+                if lock[1] == "vampyre":
+                    num = core.is_locked(args[0])[2]
+                    if num:
+                        self.unlock(args[0], int(num))
+                else:
+                    print(args[0], "is not locked with vampyre.")
+            else:
+                print(args[0], "is unlocked.")
 
 
     def print_vamPYre(self, clear=False):
@@ -54,20 +60,33 @@ class vampyre(Program):
         for each in vampyre:
             print(each,end='',flush=True)
             sleep(.008)
+        print()
 
     def loadingBar(self):
         for i in range(1,10):
             print(".", end='', flush=True)
             sleep(.1)
 
-    def disarming_utility(self, size):
+    def unlock(self, file, size):
         self.size = size
         self.solution = []
         self.possibles = []
         self.roll_solution()
         self.guessed = ["-"]*self.size
         self.print_current()
-        self.guessing()
+        solved = self.guessing()
+        if solved:
+            f = open(core.filesdir+"/"+file, 'r')
+            data = f.readlines()
+            f.close()
+            f = open(core.filesdir+"/"+file, 'w')
+            for line in data:
+                if "!!" not in line:
+                    print(line)
+                    f.write(line)
+            f.truncate()
+            f.close()
+            print(file, "UNLOCKED")
 
     def roll_solution(self):
         character=""
@@ -119,6 +138,7 @@ class vampyre(Program):
                         self.possibles.remove(each.upper())
             print('--------------------------------------------------------------------')
             self.print_current()
+        return True
 
 
     def rolling(self):
@@ -126,7 +146,3 @@ class vampyre(Program):
 
     def win(self):
         print()
-
-if __name__ == '__main__':
-    a = vampyre()
-    a.runcmd()

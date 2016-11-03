@@ -3,7 +3,7 @@ So you fucked up and accidentally armed a bomb? Great job.
 
 
    *----------*
-   | computer |
+   | CyberDeck|
    |          |
    |          |    cable
    *----------*             -----------
@@ -14,7 +14,8 @@ So you fucked up and accidentally armed a bomb? Great job.
 >Bomb defusal requires disarming SOFTWARE and HARDWARE locks.
     1: HARDWARE
         -Carefully remove components from the bomb.
-        -
+        -Upon the successful removal of all components, the bomb will display a code.
+        -This code will be used to disarm the bomb via the CyberDeck
 
     2: SOFTWARE
         -Login as root:

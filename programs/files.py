@@ -1,5 +1,4 @@
 from core import Program
-from os import listdir
 import core
 
 class files(Program):

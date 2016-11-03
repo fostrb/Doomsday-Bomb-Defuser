@@ -9,6 +9,13 @@ class Program(object):
         self.brief = brief or ''
         self.programType = programType
 
+class CyberDeck(object):
+    def __init__(self, name, rank=1):
+        self.name=name
+        self.rank=rank
+        
+
+
 banner = """
  ____                                          ______
 |                        ..'''' `````|`````  .~      ~.

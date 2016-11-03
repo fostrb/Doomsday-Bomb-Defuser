@@ -1,7 +1,4 @@
 from core import Program
-import os
-from os import listdir
-from os.path import isfile, join
 import core
 
 class openfile(Program):
@@ -15,12 +12,18 @@ class openfile(Program):
         else:
             self.filelist = core.get_files()
             if args[0] in self.filelist:
-                f = open(core.filesdir+'/'+args[0])
-                line = f.readline()
-                if 'LOCK' in line:
-                    print("LOCKED")
+                lock = core.is_locked(args[0])
+                if lock:
+                    print("\tFile", args[0], "is", lock[1], "LOCKED.")
+                    if lock[1] in core.programs:
+                        print("\tTry using ", lock[1], "to unlock the file.")
+                        print("\tExample: \"", lock[1], args[0], "\" ")
+                    else:
+                        print(lock[1], "is not installed on this deck.")
                     return
-                os.system("cat "+core.filesdir+'/'+args[0])
+                f = open(core.filesdir+'/'+args[0])
+                contents = f.read()
+                print(contents)
                 print()
             else:
                 print("File not found")

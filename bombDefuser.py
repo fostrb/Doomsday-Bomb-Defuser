@@ -105,12 +105,6 @@ class bombDefuser(object):
                     print(core.banner)
                     print("USER NOT FOUND")
 
-
-        def load_cmds(self):
-            from programs import files, openfile, clear, whoami, printfile, unlock, armBomb, bombStatus, disarm, vampyre
-            return [files.files(), openfile.openfile(), clear.clear(), whoami.whoami(), printfile.printfile(), unlock.unlock(), armBomb.armBomb(), bombStatus.bombStatus(), disarm.disarm(), vampyre.vampyre()]
-
-
 if __name__ == "__main__":
     a = bombDefuser()
     a.main_loop()
