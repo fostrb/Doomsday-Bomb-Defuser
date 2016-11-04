@@ -1,16 +1,15 @@
 from core import Program
-import core
 from time import sleep
-import os
+import estoBomb
 
 class armBomb(Program):
-    def __init__(self, name="armBomb", brief="Bomb arming utility"):
-        super(armBomb, self).__init__(name=name, brief=brief)
+    def __init__(self, name="armBomb", brief="Arms the bomb and dumps bomb connection", programType="ESTO Bomb Utilities"):
+        super(armBomb, self).__init__(name=name, brief=brief, programType=programType)
         self.alias = ["arm"]
 
     def runcmd(self, args):
-        if core.armed==False:
-            core.armed=True
+        if estoBomb.armed==False:
+            estoBomb.armed=True
             print("ARMING BOMB:")
             sleep(1)
             print("CHECKING HARDWARE", end='', flush=True)
@@ -18,8 +17,8 @@ class armBomb(Program):
             print("FLIPPING SWITCHES", end='', flush=True)
             self.loadingBar()
             print("ROLLING CRYPTO LOCKS", end='', flush=True)
-            core.crypto1Locked = "DEADBEEF"
-            core.crypto2Locked = "password"
+            estoBomb.crypto_lock1 = 'deadbeef'
+            estoBomb.crypto_lock2 = 'password'
             self.loadingBar()
             print("Bomb armed. Get the fuck out of there.")
         else:

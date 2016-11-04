@@ -1,10 +1,11 @@
 from core import Program
 import core
 from time import sleep
+import estoBomb
 
 class unlock(Program):
-    def __init__(self, name="unlock", brief="Bomb unlock utility", privileges="root"):
-        super(unlock, self).__init__(name=name, brief=brief, privileges=privileges)
+    def __init__(self, name="unlock", brief="Bomb unlock utility", privileges="root", programType="ESTO Bomb Utilities"):
+        super(unlock, self).__init__(name=name, brief=brief, privileges=privileges, programType=programType)
         self.alias = ["unlock"]
         self.morse = {'A': '.-',     'B': '-...',   'C': '-.-.',
         'D': '-..',    'E': '.',      'F': '..-.',
@@ -23,19 +24,19 @@ class unlock(Program):
         }
 
     def runcmd(self, args):
-        if not core.armed:
+        if not estoBomb.armed:
             print("Bomb is not armed.")
             return
         print("disarming")
-        if core.crypto1Locked:
+        if estoBomb.crypto_lock1:
             print("CryptoLock 1:")
-            for each in core.crypto1Locked:
+            for each in estoBomb.crypto_lock1:
                 print(self.morse[each.upper()], end=' ', flush=True)
                 sleep(.5)
             print()
             guess = ""
             attempts = 0
-            while guess.upper()!= core.crypto1Locked.upper():
+            while guess.upper()!= estoBomb.crypto_lock1.upper():
                 if attempts >=1:
                     print("INCORRECT DECODING")
                 if attempts == 3:
@@ -43,18 +44,18 @@ class unlock(Program):
                     return
                 guess = input("Input decoded lock:")
                 attempts+=1
-            core.crypto1Locked = False
+            estoBomb.crypto_lock1 = False
             print("CryptoLock 1 Unlocked.")
 
-        if core.crypto2Locked:
+        if estoBomb.crypto_lock2:
             print("CryptoLock 2:")
-            for each in core.crypto2Locked:
+            for each in estoBomb.crypto_lock2:
                 print(self.morse[each.upper()], end=' ', flush=True)
                 sleep(.5)
             print()
             guess = ""
             attempts = 0
-            while guess.upper()!= core.crypto2Locked.upper():
+            while guess.upper()!= estoBomb.crypto_lock2.upper():
                 if attempts >=1:
                     print("INCORRECT DECODING")
                 if attempts == 3:
@@ -62,5 +63,5 @@ class unlock(Program):
                     return
                 guess = input("Input decoded lock:")
                 attempts+=1
-            core.crypto2Locked = False
+            estoBomb.crypto_lock2= False
             print("CryptoLock 2 Unlocked.")

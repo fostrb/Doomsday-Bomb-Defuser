@@ -6,7 +6,7 @@ import os
 from time import sleep
 
 class vampyre(Program):
-    def __init__(self, name="vampyre", brief="Cyber lockpick utility", privileges="guest", programType="Hacking Utilities"):
+    def __init__(self, name="vampyre", brief="Cyber lockpicking utility", privileges="guest", programType="Hacking Utilities"):
         super(vampyre, self).__init__(name=name, brief=brief, privileges=privileges, programType=programType)
         self.alias = ["vamp"]
 
@@ -16,7 +16,16 @@ class vampyre(Program):
             print("\nEnter a target to unlock.")
             print("USAGE: vampyre <locked file>")
             return
-        if (args[0].lower() == '--sweep')or args[0].lower() == '-s':
+        if (args[0].lower() == 'help'):
+          print("--vampyre cyber lockpicking utility")
+          print("options:")
+          print("\tSWEEP: --sweep (-s)")
+          print("\t\t'vampyre --sweep'")
+          print("\t\tSearch files for vulnerabilities. Files able to be unlocked will display as 'vulnerable'\n")
+          print("\tLOCK: --lock (-l)")
+          print("\t\t'vampyre --lock 5 <filename>'")
+          print("\t\tLock a file, specifying complexity of lock.")
+        elif (args[0].lower() == '--sweep')or args[0].lower() == '-s':
             print("sweeping...")
             filelist = [f for f in os.listdir(core.filesdir) if isfile(join(core.filesdir, f))]
             for file in filelist:
@@ -79,7 +88,7 @@ class vampyre(Program):
     def lock_waiting(self, complexity):
         for i in range(1, (complexity)*10):
             print(".",end='', flush=True)
-            #sleep(1)
+            sleep(.5)
 
 
     def print_vamPYre(self, clear=False):

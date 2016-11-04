@@ -48,16 +48,9 @@ initial = """Enter "help" for command list
 
 curUser = "guest"
 
-armed = False
-
 admins = {"root":"toor"}
 promptSuffix = "@estoBombRig>"
 prompt = curUser+promptSuffix
-
-
-
-crypto1Locked = False
-crypto2Locked = False
 
 pullACard = """
 ------------------------------------------------------------

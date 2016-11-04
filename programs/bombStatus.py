@@ -1,24 +1,25 @@
 from core import Program
 import core
+import estoBomb
 
 class bombStatus(Program):
-    def __init__(self, name="bombStatus", brief="Check bomb status"):
-        super(bombStatus, self).__init__(name=name, brief=brief)
+    def __init__(self, name="bombStatus", brief="Check bomb status", programType="ESTO Bomb Utilities"):
+        super(bombStatus, self).__init__(name=name, brief=brief, programType=programType)
         self.alias = ["status"]
 
     def runcmd(self, args):
         print("BOMB:", end='')
-        if core.armed:
+        if estoBomb.armed:
             print("\t\tARMED")
         else:
             print("\t\tNOT ARMED")
         print("crypto1:", end='')
-        if core.crypto1Locked:
+        if estoBomb.crypto_lock1:
             print("\tLOCKED")
         else:
             print("\tUNLOCKED")
         print("crypto2:", end='')
-        if core.crypto2Locked:
+        if estoBomb.crypto_lock2:
             print("\tLOCKED")
         else:
             print("\tUNLOCKED")

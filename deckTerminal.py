@@ -4,18 +4,20 @@ import signal
 
 '''
 TODO:
+-transfer bomb status things from CORE to ESTOBOMB
+-write a bomb connection program
+-while not connected to bomb, unload bomb-specific programs
 -bombUnlock
 -bomb defusal file
 '''
 
-class bombDefuser(object):
+class DeckTerminal(object):
         def __init__(self):
             os.system('cls' if os.name =='nt' else 'clear')
             print(core.banner)
             print(core.initial)
             signal.signal(signal.SIGINT, self.sigint_handler)
-            signal.signal(signal.SIGTSTP, self.sigtstp_handler)
-
+            #signal.signal(signal.SIGTSTP, self.sigtstp_handler)
 
         def sigtstp_handler(self, signum, frame):
             print()
@@ -48,10 +50,10 @@ class bombDefuser(object):
             cmd_args = sep
             for loaded in core.programs:
                 if command == loaded.name:
-                    if core.curUser == "guest":
-                        if loaded.privileges != "guest":
-                            print("gotta have ROOT to do that, sucka")
-                            return
+                    #if core.curUser == "guest":
+                    #   if loaded.privileges != "guest":
+                    #       print("gotta have ROOT to do that, sucka")
+                    #        return
                     loaded.runcmd(cmd_args)
                     return
                 if command in loaded.alias:
@@ -106,5 +108,5 @@ class bombDefuser(object):
                     print("USER NOT FOUND")
 
 if __name__ == "__main__":
-    a = bombDefuser()
+    a = DeckTerminal()
     a.main_loop()
