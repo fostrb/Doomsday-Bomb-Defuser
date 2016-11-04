@@ -1,6 +1,7 @@
 import os
 from os import listdir
 from os.path import isfile, join
+
 class Program(object):
     def __init__(self, name, usage=None, brief=None, privileges="guest", programType="Basic Utilities"):
         self.name = name
