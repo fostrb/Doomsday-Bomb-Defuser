@@ -47,11 +47,9 @@ programs=load_programs()
 initial = """Enter "help" for command list
 """
 
-curUser = "guest"
 
-admins = {"root":"toor"}
-promptSuffix = "@estoBombRig>"
-prompt = curUser+promptSuffix
+promptSuffix = "estoBombDeck>"
+prompt = promptSuffix
 
 pullACard = """
 ------------------------------------------------------------

@@ -15,11 +15,14 @@ class openfile(Program):
                 lock = core.is_locked(args[0])
                 if lock:
                     print("\tFile", args[0], "is", lock[1], "LOCKED.")
-                    if lock[1] in core.programs:
+                    names = []
+                    for each in core.programs:
+                        names.append(each.name)
+                    if lock[1] in names:
                         print("\tTry using ", lock[1], "to unlock the file.")
                         print("\tExample: \"", lock[1], args[0], "\" ")
                     else:
-                        print(lock[1], "is not installed on this deck.")
+                        print("\t"+lock[1], "is not installed on this deck.")
                     return
                 f = open(os.path.normpath(core.filesdir+'/'+args[0]))
                 contents = f.read()

@@ -127,8 +127,9 @@ class vampyre(Program):
             f = open(os.path.normpath(core.filesdir+"/"+file), 'w')
             for line in data:
                 if "!!" not in line:
-                    print(line)
+                    print(line,end='')
                     f.write(line)
+            print()
             f.truncate()
             f.close()
             print(file, "UNLOCKED")

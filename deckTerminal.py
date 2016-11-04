@@ -4,7 +4,6 @@ import signal
 
 '''
 TODO:
--transfer bomb status things from CORE to ESTOBOMB
 -write a bomb connection program
 -while not connected to bomb, unload bomb-specific programs
 -bombUnlock
@@ -53,19 +52,12 @@ class DeckTerminal(object):
             cmd_args = sep
             for loaded in core.programs:
                 if command == loaded.name:
-                    #if core.curUser == "guest":
-                    #   if loaded.privileges != "guest":
-                    #       print("gotta have ROOT to do that, sucka")
-                    #        return
                     loaded.runcmd(cmd_args)
                     return
                 if command in loaded.alias:
                     loaded.runcmd(cmd_args)
                     return
-            if command == "logout":
-                os.system('cls' if os.name =='nt' else 'clear')
-                self.login_screen()
-            elif command in ["cmds","programs", "help"]:
+            if command in ["cmds","programs", "help"]:
                 progDict = {}
                 for each in core.programs:
                     if each.programType not in progDict.keys():
@@ -76,7 +68,6 @@ class DeckTerminal(object):
                     for program in progDict[progType]:
                         print("\t",program.name,":",program.brief)
                 print("---System Specific------------------")
-                print("\t","logout : return to login screen")
                 print("\t","help : displays list of programs and their usages")
                 return
             elif command == "stopthismadness":
@@ -84,31 +75,6 @@ class DeckTerminal(object):
             else:
                 print("Command not recognized. Enter \'help\' for a list of programs.")
 
-
-        def login_screen(self):
-            core.curUser = "guest"
-            core.prompt = core.curUser+core.promptSuffix
-            print(core.banner)
-            print("Please enter your username and password")
-            uname = ""
-            while uname not in core.admins:
-                uname = input("USERNAME:") or "guest"
-                if uname == "guest":
-                    return
-                if uname in core.admins:
-                    password = input("PASSWORD:")
-                    if password == core.admins[uname]:
-                        core.curUser = uname
-                        core.prompt = core.curUser+core.promptSuffix
-                        print("LOGGED IN AS", core.curUser.upper())
-                    else:
-                        os.system('cls' if os.name =='nt' else 'clear')
-                        print("PASSWORD INCORRECT")
-                        self.login_screen()
-                else:
-                    os.system('cls' if os.name =='nt' else 'clear')
-                    print(core.banner)
-                    print("USER NOT FOUND")
 
 if __name__ == "__main__":
     a = DeckTerminal()

@@ -1,4 +1,12 @@
 !!:vampyre:7
-asdofkjapowierjpaslkdjfpaoiwejrkal
-asdokfj;
-a;sdlkfj;laskdf;lasdf
+TICKING BOMB: Rank 3 Bomb
+
+--Requires large Phys Rep that produces a loud ticking sound.
+--Requires Marshal.
+
+Place Ticking Bomb in an area. Declare a Tech Type.
+Ticking Bomb will explode 5 minutes after being placed unless someone with the named Tech shuts off the bomb. (Takes 1 minute).
+If Bomb goes off, all targets in the area are dropped to the critical stage of their Death Count.
+All Upgrades on the area are destroyed.
+
+[10 Telluric, 9 Fauna, 1 Gizmo]
