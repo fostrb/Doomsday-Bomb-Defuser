@@ -1,6 +1,6 @@
 from core import Program
 import core
-
+import os
 class openfile(Program):
     def __init__(self, name="open", brief="Open a file. USAGE: \"open filename\""):
         super(openfile, self).__init__(name=name, brief=brief)
@@ -21,7 +21,7 @@ class openfile(Program):
                     else:
                         print(lock[1], "is not installed on this deck.")
                     return
-                f = open(core.filesdir+'/'+args[0])
+                f = open(os.path.normpath(core.filesdir+'/'+args[0]))
                 contents = f.read()
                 print(contents)
                 print()

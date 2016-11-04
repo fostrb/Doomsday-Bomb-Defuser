@@ -31,6 +31,36 @@ class vampyre(Program):
                 else:
                     print("UNLOCKED")
             return
+        elif (args[0].lower() == '--lock') or (args[0].lower() == '-l'):
+            if args[1]:
+                try:
+                    complexity = int(args[1])
+                except:
+                    print("Invalid syntax")
+                    print("Example: 'vampyre --lock 5 <file>")
+                    return
+                if 14 > complexity >1:
+                    if args[2]:
+                        if args[2] in core.get_files():
+                            if core.is_locked(args[2]):
+                                print(args[2], "is already locked.")
+                                return
+                            else:
+                                inputString = "Locking", args[2], "with vampyre at complexity", complexity,": continue? (y/n)"
+                                if input(inputString) in ["y", "yes", "Y", "YES"]:
+                                    self.lock_waiting(complexity)
+                                    f = open(os.path.normpath(core.filesdir+"/"+args[2]), "r")
+                                    data = f.read()
+                                    f.close()
+                                    f = open(os.path.normpath(core.filesdir+"/"+args[2]), "w")
+                                    f.write("!!:vampyre:"+str(complexity)+"\n")
+                                    f.write(data)
+                                    f.close()
+
+            else:
+                print("Enter the level of complexity that you would like to lock the file at. (1 - 13)")
+                print("Higher levels of complexity will take exponentially longer to complete encryption.")
+                print("Example: 'vampyre --lock 5 <file>")
         elif args[0] not in core.get_files():
             print("File doesn't exist")
             return
@@ -45,6 +75,11 @@ class vampyre(Program):
                     print(args[0], "is not locked with vampyre.")
             else:
                 print(args[0], "is unlocked.")
+
+    def lock_waiting(self, complexity):
+        for i in range(1, (complexity)*10):
+            print(".",end='', flush=True)
+            #sleep(1)
 
 
     def print_vamPYre(self, clear=False):
@@ -76,13 +111,12 @@ class vampyre(Program):
         self.print_current()
         solved = self.guessing()
         if solved:
-            f = open(core.filesdir+"/"+file, 'r')
+            f = open(os.path.normpath(core.filesdir+"/"+file), 'r')
             data = f.readlines()
             f.close()
-            f = open(core.filesdir+"/"+file, 'w')
+            f = open(os.path.normpath(core.filesdir+"/"+file), 'w')
             for line in data:
                 if "!!" not in line:
-                    print(line)
                     f.write(line)
             f.truncate()
             f.close()

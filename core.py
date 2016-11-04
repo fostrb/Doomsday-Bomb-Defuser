@@ -13,7 +13,7 @@ class CyberDeck(object):
     def __init__(self, name, rank=1):
         self.name=name
         self.rank=rank
-        
+
 
 
 banner = """
@@ -23,7 +23,7 @@ banner = """
 |                  ..'               |      |          |
 |___________ ....''                  |       `.______.'
 """
-filesdir = "/home/ben/PycharmProjects/bombDefuser/FILESDIR"
+filesdir = os.path.normpath("./FILESDIR")
 
 def load_programs():
     from programs import files, openfile, clear, whoami, printfile, unlock, armBomb, bombStatus, disarm, vampyre
@@ -34,7 +34,7 @@ def get_files():
     return fileslist
 
 def is_locked(file):
-    f = open(filesdir+'/'+file)
+    f = open(os.path.normpath(filesdir+'/'+file))
     line = f.readline()
     if("!!" in line):
         return line.split(':')
