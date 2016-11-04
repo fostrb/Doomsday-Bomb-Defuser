@@ -8,7 +8,10 @@ TODO:
 -write a bomb connection program
 -while not connected to bomb, unload bomb-specific programs
 -bombUnlock
+-bomb Disarm
 -bomb defusal file
+
+-fix cat program "X is not installed on this deck"
 '''
 
 class DeckTerminal(object):

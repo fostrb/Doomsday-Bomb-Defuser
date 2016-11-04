@@ -4,7 +4,7 @@ from time import sleep
 import estoBomb
 
 class unlock(Program):
-    def __init__(self, name="unlock", brief="Bomb unlock utility", privileges="root", programType="ESTO Bomb Utilities"):
+    def __init__(self, name="unlock", brief="Unlock bomb crypto locks", privileges="root", programType="ESTO Bomb Utilities"):
         super(unlock, self).__init__(name=name, brief=brief, privileges=privileges, programType=programType)
         self.alias = ["unlock"]
         self.morse = {'A': '.-',     'B': '-...',   'C': '-.-.',

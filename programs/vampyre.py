@@ -89,6 +89,7 @@ class vampyre(Program):
         for i in range(1, (complexity)*10):
             print(".",end='', flush=True)
             sleep(.5)
+        print(".")
 
 
     def print_vamPYre(self, clear=False):
@@ -126,10 +127,12 @@ class vampyre(Program):
             f = open(os.path.normpath(core.filesdir+"/"+file), 'w')
             for line in data:
                 if "!!" not in line:
+                    print(line)
                     f.write(line)
             f.truncate()
             f.close()
             print(file, "UNLOCKED")
+
 
     def roll_solution(self):
         character=""
