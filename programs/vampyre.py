@@ -43,6 +43,8 @@ class vampyre(Program):
         elif (args[0].lower() == '--lock') or (args[0].lower() == '-l'):
             if args[1]:
                 try:
+                    if not int(args[1]):
+                        return
                     complexity = int(args[1])
                 except:
                     print("Invalid syntax")
@@ -90,6 +92,9 @@ class vampyre(Program):
             print(".",end='', flush=True)
             sleep(.5)
         print(".")
+
+    def beep(self):
+        print("\a")
 
 
     def print_vamPYre(self, clear=False):
