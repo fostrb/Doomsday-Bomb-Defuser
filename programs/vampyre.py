@@ -41,7 +41,8 @@ class vampyre(Program):
                     print("UNLOCKED")
             return
         elif (args[0].lower() == '--lock') or (args[0].lower() == '-l'):
-            if args[1]:
+            if len(args) != 4:
+            #if args[1]:
                 try:
                     if not int(args[1]):
                         return
