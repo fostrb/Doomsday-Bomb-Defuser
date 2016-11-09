@@ -16,6 +16,7 @@ class CyberDeck(object):
         self.rank=rank
 
 
+connected_to_bomb = False
 
 banner = """
  ____                                          ______
@@ -23,12 +24,13 @@ banner = """
 |______               .''            |      |          |
 |                  ..'               |      |          |
 |___________ ....''                  |       `.______.'
+                                --Bomb Rig Deck---
 """
 filesdir = os.path.normpath("./FILESDIR")
 
 def load_programs():
-    from programs import files, openfile, clear, whoami, printfile, unlock, armBomb, bombStatus, disarm, vampyre
-    return [files.files(), openfile.openfile(), clear.clear(), whoami.whoami(), printfile.printfile(), unlock.unlock(), armBomb.armBomb(), bombStatus.bombStatus(), disarm.disarm(), vampyre.vampyre()]
+    from programs import files, openfile, clear, whoami, printfile, unlock, armBomb, bombStatus, disarm, vampyre, cryolock, connect
+    return [files.files(), openfile.openfile(), clear.clear(), whoami.whoami(), printfile.printfile(), unlock.unlock(), armBomb.armBomb(), bombStatus.bombStatus(), disarm.disarm(), vampyre.vampyre(), cryolock.cryolock(), connect.connect()]
 
 def get_files():
     fileslist = [f for f in listdir(filesdir) if isfile(join(filesdir, f))]

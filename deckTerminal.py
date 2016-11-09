@@ -4,7 +4,6 @@ import signal
 
 '''
 TODO:
--Fix error when not enough arguments given to vampyre --lock
 -write a bomb connection program
 -while not connected to bomb, unload bomb-specific programs
 -bombUnlock
@@ -50,10 +49,11 @@ class DeckTerminal(object):
             command = sep.pop(0)
             cmd_args = sep
             for loaded in core.programs:
-                if command == loaded.name:
-                    loaded.runcmd(cmd_args)
-                    return
-                if command in loaded.alias:
+                if (command == loaded.name) or (command in loaded.alias):
+                    if loaded.programType == "ESTO Bomb Utilities" or loaded.name == "cryolock":
+                        if not core.connected_to_bomb:
+                            print("NOT CONNECTED TO BOMB")
+                            return
                     loaded.runcmd(cmd_args)
                     return
             if command in ["cmds","programs", "help"]:
