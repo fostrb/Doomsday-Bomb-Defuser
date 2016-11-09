@@ -16,6 +16,7 @@ class cryolock(Program):
 ██║     ██╔══██╗  ╚██╔╝  ██║   ██║██║     ██║   ██║██║     ██╔═██╗
 ╚██████╗██║  ██║   ██║   ╚██████╔╝███████╗╚██████╔╝╚██████╗██║  ██╗
  ╚═════╝╚═╝  ╚═╝   ╚═╝    ╚═════╝ ╚══════╝ ╚═════╝  ╚═════╝╚═╝  ╚═╝
+                                        -SYSTEM BRICKER-
         """
 
     def runcmd(self, args):
@@ -30,6 +31,13 @@ class cryolock(Program):
             if not estoBomb.armed:
                 print("ESTO BOMB is not currently armed.")
                 return
+            passcode = ''
+            while passcode.lower() != "ef45a2":
+                passcode = input("PASSCODE:")
+                if passcode.lower() != "ef45a2":
+                    print(core.pullACard)
+                    return
+
             rows = 10
             columns = 10
             difficulty = .1
@@ -205,6 +213,7 @@ class Minesweeper(object):
 
     def _print_board(self, data):
         """Helper method to print the visible board or the full answers"""
+        print("OPTIONS:")
         print("f : FLAG")
         print("u : UNFLAG")
         print("s : SWEEP SURROUNDING\n")

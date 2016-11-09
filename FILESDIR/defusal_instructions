@@ -15,11 +15,12 @@ So you fucked up and accidentally armed a bomb? Great job.
     1: HARDWARE
         -Carefully remove components from the bomb.
         -Upon the successful removal of all components, the bomb will display a code.
-        -This code will be used to disarm the bomb via the CyberDeck
+        -This code will be required to disarm the software component of the bomb.
 
     2: SOFTWARE
-        -Login as root:
-            >logout
-            >USERNAME: root, PASSOWRD: toor
         -Run the unlock utility to unlock both crypto keys.
-        -After unlocking both crypto keys, run the disarm utility to disarm the bomb.
+            -Keys are spit out as morse, just decode them.
+        -AFTER unlocking both cryptographic keys with the unlock utility AND disarming the hardware, we need to run cryolock.
+            -cryolock will prompt you for a passcode
+            -This is the code displayed on the disarmed hardware (It will be required)
+            -Disarm the bomb using the cryolock utility after entering the passcode
