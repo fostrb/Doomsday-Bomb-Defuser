@@ -27,7 +27,6 @@ class unlock(Program):
         if not estoBomb.armed:
             print("Bomb is not armed.")
             return
-        print("disarming")
         if estoBomb.crypto_lock1:
             print("CryptoLock 1:")
             for each in estoBomb.crypto_lock1:

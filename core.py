@@ -29,8 +29,8 @@ banner = """
 filesdir = os.path.normpath("./FILESDIR")
 
 def load_programs():
-    from programs import files, openfile, clear, whoami, printfile, unlock, armBomb, bombStatus, disarm, vampyre, cryolock, connect
-    return [files.files(), openfile.openfile(), clear.clear(), whoami.whoami(), printfile.printfile(), unlock.unlock(), armBomb.armBomb(), bombStatus.bombStatus(), disarm.disarm(), vampyre.vampyre(), cryolock.cryolock(), connect.connect()]
+    from programs import files, openfile, clear, printfile, unlock, armBomb, bombStatus, vampyre, cryolock, connect
+    return [files.files(), openfile.openfile(), clear.clear(), printfile.printfile(), unlock.unlock(), armBomb.armBomb(), bombStatus.bombStatus(), vampyre.vampyre(), cryolock.cryolock(), connect.connect()]
 
 def get_files():
     fileslist = [f for f in listdir(filesdir) if isfile(join(filesdir, f))]

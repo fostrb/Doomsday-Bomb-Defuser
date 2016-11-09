@@ -14,6 +14,9 @@ class connect(Program):
                 print("Hard-wire cyberdeck to a device.")
                 print("This utility will auto-detect device and allow interfacing.")
         else:
+            if core.connected_to_bomb:
+                print("Already connected to ESTO BOMB.")
+                return
             print("Connecting to hard-wired device", end='')
             self.loadingBar()
             print("Fingerprinting device" ,end='')

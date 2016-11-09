@@ -6,7 +6,7 @@ import core
 import os
 
 class cryolock(Program):
-    def __init__(self, name="cryolock", brief="Device stabilizing/Locking utility", programType="Hacking Utilities"):
+    def __init__(self, name="cryolock", brief="Bomb Disarmer | System Bricker", programType="Hacking Utilities"):
         super(cryolock, self).__init__(name=name, brief=brief, programType=programType)
         self.alias = ["cryo"]
         self.cryoBanner = """
